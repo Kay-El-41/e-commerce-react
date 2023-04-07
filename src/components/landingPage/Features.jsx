@@ -11,9 +11,9 @@ const Features = () => {
   }, [])
 
   const fetchCategoriesAPI = async () => {
-    const api = await fetch('https://fakestoreapi.com/products')
+    const api = await fetch('https://dummyjson.com/products?limit=20')
     const data = await api.json()
-    setProducts(data)
+   setProducts(data.products)
   }
   return (
     <section id="features" className="p-2 lg:px-[150px] mb-10">
