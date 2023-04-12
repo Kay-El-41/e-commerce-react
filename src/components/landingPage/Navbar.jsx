@@ -6,11 +6,15 @@ import {
   TfiSearch,
 } from 'react-icons/tfi'
 import { useNavigate, Link } from 'react-router-dom'
+import { ProductContextCustom } from '../context/ProductContext'
 
 const Navbar = () => {
   const [hideSideMenu, setHideSideMenu] = useState(true)
   const [search, setSearch] = useState('')
   const navigate = useNavigate()
+  const {
+    state: { cart },
+  } = ProductContextCustom()
 
   const toggleMenu = () => {
     setHideSideMenu(!hideSideMenu)
@@ -23,6 +27,10 @@ const Navbar = () => {
   const goToSearchPage = (e) => {
     e.preventDefault()
     navigate(`/search/${search}`)
+  }
+
+  const goToCartPage = () => {
+    navigate('/cart')
   }
 
   return (
@@ -61,13 +69,13 @@ const Navbar = () => {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link>Categories</Link>
+            <Link to="/products/categories/smartphones">Categories</Link>
           </li>
           <li>
             <Link>Message Us</Link>
           </li>
           <li>
-            <Link>Cart</Link>
+            <Link to="/cart">Cart</Link>
           </li>
           <br />
           <li>
@@ -80,9 +88,12 @@ const Navbar = () => {
       </div>
 
       {/* Logo */}
-      <span className="font-bold tracking-wider text-2xl text-white select-none">
+      <Link
+        to="/"
+        className="font-bold tracking-wider text-2xl text-white select-none"
+      >
         Alimazon
-      </span>
+      </Link>
 
       {/* Navigation after md screen and up to */}
       <div className="hidden md:block">
@@ -91,7 +102,7 @@ const Navbar = () => {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link>Categories</Link>
+            <Link to="/products/categories/smartphones">Categories</Link>
           </li>
           <li>
             <Link>Message Us</Link>
@@ -125,7 +136,15 @@ const Navbar = () => {
         </form>
 
         {/* Cart Button */}
-        <TfiShoppingCart className="text-2xl text-white cursor-pointer" />
+        <div className="relative">
+          <TfiShoppingCart
+            className="text-2xl text-white cursor-pointer"
+            onClick={goToCartPage}
+          />
+          <p className="absolute top-[-0.5em] right-[-0.5em] select-none flex justify-center items-center text-sm bg-white text-orange-500 w-4 h-4 rounded-full">
+            {cart.length}
+          </p>
+        </div>
       </div>
     </nav>
   )
