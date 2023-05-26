@@ -1,7 +1,8 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const HeroSection = () => {
-  const generatePosition = () => {}
+  const nav = useNavigate()
 
   return (
     <section
@@ -15,9 +16,11 @@ const HeroSection = () => {
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo,
         nesciunt.
       </p>
-      <button className="bg-white bg- px-5 py-1 rounded-2xl text-orange-500 hover:scale-105 ease transition-all duration-300 font-semibold shadow tracking-wide">
-        Browse Now
-      </button>
+      <Link to="/products/page/1">
+        <button className="bg-white bg- px-5 py-1 rounded-2xl text-orange-500 hover:scale-105 ease transition-all duration-300 font-semibold shadow tracking-wide">
+          Browse Now
+        </button>
+      </Link>
     </section>
   )
 }
