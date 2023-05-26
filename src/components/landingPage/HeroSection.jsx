@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const HeroSection = () => {
-  const nav = useNavigate()
 
   return (
     <section
